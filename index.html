@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Ezzat Gebally | Creative Executive Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- BRAND VARIABLES --- */
+        :root {
+            --deep-navy: #072334;
+            --ocean-blue: #00517E;
+            --sandstone: #C2C3BC;
+            --soft-white: #F9F9F9;
+            --gold-accent: #C5A880; 
+            --text-dark: #1A1A1A;
+            --text-light: #888888;
+        }
+
+        /* --- GLOBAL RESETS & TYPOGRAPHY --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-white);
+            color: var(--deep-navy);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        a:hover { color: var(--gold-accent); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-up {
+            animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-padding { padding: 120px 0; }
+        
+        .divider {
+            width: 1px;
+            height: 80px;
+            background-color: var(--gold-accent);
+            margin: 40px auto;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            background-color: var(--deep-navy);
+            color: var(--soft-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 5%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(7,35,52,0) 0%, rgba(7,35,52,1) 100%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            z-index: 1;
+        }
+
+        .hero-contact {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-weight: 300;
+            color: var(--sandstone);
+            z-index: 1;
+        }
+
+        .hero-contact span { margin: 0 15px; }
+
+        /* --- EXECUTIVE SUMMARY --- */
+        .exec-summary {
+            background-color: var(--soft-white);
+            text-align: center;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--ocean-blue);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .bio-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            column-count: 1;
+        }
+
+        @media(min-width: 768px) {
+            .bio-text { column-count: 2; column-gap: 40px; text-align: left; }
+        }
+
+        /* --- KPI GRID --- */
+        .kpi-section {
+            background-color: #fff;
+            border-top: 1px solid #EAEAEA;
+            border-bottom: 1px solid #EAEAEA;
+            padding: 80px 0;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .kpi-item h3 {
+            font-size: 3rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .kpi-item p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* --- EDITORIAL SECTIONS (CASE STUDIES) --- */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--sandstone);
+            padding-bottom: 20px;
+        }
+
+        .section-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold-accent);
+            margin-right: 20px;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--deep-navy);
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        @media(min-width: 992px) {
+            .project-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .project-card {
+            background: #fff;
+            padding: 50px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .project-card:hover {
+            border-color: var(--sandstone);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(7, 35, 52, 0.05);
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-accent);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .list-editorial {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .list-editorial li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .list-editorial li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold-accent);
+        }
+
+        /* --- PLACEHOLDER NOTE --- */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: var(--sandstone);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            font-family: monospace;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            opacity: 0.7;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials {
+            background-color: var(--deep-navy);
+            color: var(--soft-white);
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .test-card {
+            border-left: 1px solid var(--gold-accent);
+            padding-left: 20px;
+        }
+
+        .test-card p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--sandstone);
+        }
+
+        .test-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 5%;
+            text-align: center;
+            background: #fff;
+        }
+
+        footer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-accent);
+            border-bottom-color: var(--gold-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="animate-up">
+            <div class="hero-subtitle">Professional Creative Design Portfolio</div>
+            <h1>Mohamed Ezzat Gebally</h1>
+            <div class="hero-subtitle" style="color: var(--soft-white); margin-bottom: 40px;">Senior Hospitality Marketing Manager & Brand Strategist</div>
+            
+            <div class="hero-contact">
+                <a href="mailto:moezat0505@gmail.com">moezat0505@gmail.com</a>
+                <span>|</span>
+                <a href="tel:+201064888048">+20 10 64 888 048</a>
+                <span>|</span>
+                Hurghada, Egypt
+            </div>
+            <div class="hero-contact" style="margin-top: 20px;">
+                <a href="https://behance.net/m7md-3zt" target="_blank">Behance</a>
+                <span>|</span>
+                <a href="https://linkedin.com/in/m7md-3zt" target="_blank">LinkedIn</a>
+                <span>|</span>
+                <a href="https://freelancer.com/u/mezat2020" target="_blank">Freelancer</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="exec-summary section-padding">
+        <div class="container animate-up">
+            <h2 class="quote">"Strategy Precedes Design. Campaign Execution Exists to Drive Commercial Growth."</h2>
+            <div class="divider"></div>
+            <div class="bio-text">
+                <p>With 12+ years of hands-on expertise spanning luxury hotel groups, regional advertising agencies, and global commercial clients, I specialize in bridging high-level brand architecture with performance acquisition channels, 3D spatial resort mapping, and cutting-edge AI marketing automation.</p>
+                <br>
+                <p>My proven track record includes directing multi-channel marketing campaigns across premier properties such as Serry Beach Resort, Sindbad Club, Pickalbatros Neverland Resort, Hilton Hurghada Plaza, and Akassia Swiss Resort. I am deeply adept at engineering seamless digital-to-physical guest journeys that increase direct bookings and reduce customer acquisition costs.</p>
+            </div>
+            <div class="image-placeholder" style="max-width: 700px; margin: 40px auto 0; height: 150px;">
+                [ DESIGN NOTE: Insert elegant Black & White Professional Headshot alongside official brand logos (Serry, Sindbad, Pickalbatros, Hilton, Akassia) ]
+            </div>
+        </div>
+    </section>
+
+    <section class="kpi-section">
+        <div class="container">
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <h3>12+</h3>
+                    <p>Years Cross-Disciplinary Experience</p>
+                </div>
+                <div class="kpi-item">
+                    <h3>4.8</h3>
+                    <p>Rating on Freelancer.com</p>
+                </div>
+                <div class="kpi-item">
+                    <h3>100%</h3>
+                    <p>On-Time & On-Budget Delivery</p>
+                </div>
+                <div class="kpi-item">
+                    <h3>3D</h3>
+                    <p>Resort Maps Engineered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <h2 class="section-title">Environmental Branding & Wayfinding Architecture</h2>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <span class="tag">Spatial & Navigation Systems</span>
+                    <h3>Resort Navigation & 3D Mapping</h3>
+                    <ul class="list-editorial">
+                        <li><strong>Comprehensive Resort Wayfinding:</strong> Engineering intuitive directional signage systems tailored for large-scale luxury hospitality complexes.</li>
+                        <li><strong>3D Spatial Mapping:</strong> Developing high-definition property maps and guest navigation architectures to streamline on-resort orientation.</li>
+                        <li><strong>Environmental Graphics:</strong> Executing large-format exterior branding, architectural wraps, and 3D exhibition environments.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <span class="tag">Touchpoints & Physical Branding</span>
+                    <h3>Guest Experience Design</h3>
+                    <ul class="list-editorial">
+                        <li><strong>Physical Guest Touchpoints:</strong> Designing seamless digital-to-physical collateral, including in-room directories, premium keycards, and curated dining menus.</li>
+                        <li><strong>Specialty Venue Branding:</strong> Crafting distinct visual identities and interior integration for secondary revenue centers, including luxury spas, wellness clubs, and signature restaurants.</li>
+                        <li><strong>Production Oversight:</strong> Specifying premium materials and overseeing physical installations to ensure absolute brand consistency across the property.</li>
+                    </ul>
+                </div>
+                
+                <div class="image-placeholder" style="grid-column: 1 / -1; height: 350px;">
+                    [ DESIGN NOTE: Feature full-width, high-res visual renders of resort maps, physical signage installations, and premium printed collateral ]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--soft-white);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <h2 class="section-title">Digital Marketing & Performance Ecosystem</h2>
+            </div>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <span class="tag">Performance & UX</span>
+                    <h3>Paid Acquisition & Direct Booking</h3>
+                    <p>Optimizing multi-channel campaigns to reduce Customer Acquisition Cost (CAC) and bypass OTA commissions.</p>
+                    <ul class="list-editorial">
+                        <li><strong>Meta & Google Ads:</strong> Targeting high-value feeder markets (Western Europe, UK, GCC).</li>
+                        <li><strong>Website Engineering:</strong> Building rapid-conversion landing pages via WordPress & Elementor.</li>
+                        <li><strong>SEO Mastery:</strong> Technical SEO audits and Local Map dominance for luxury search queries.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <span class="tag">Automation & CRM</span>
+                    <h3>AI MarTech Workflows</h3>
+                    <p>Deploying cutting-edge AI systems to elevate the guest experience and internal reporting.</p>
+                    <ul class="list-editorial">
+                        <li><strong>Guest AI Chatbots:</strong> Voiceflow & Chatbase integration for 24/7 instant booking support.</li>
+                        <li><strong>Workflow Automation:</strong> Connecting Meta Lead Ads to CRM via n8n & Flowise.</li>
+                        <li><strong>Unified Reporting:</strong> AI-driven data pipelines for executive performance dashboards.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <h2 class="section-title">Strategic Communications & Brand Sentiment</h2>
+            </div>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <span class="tag">Brand Equity & Strategy</span>
+                    <h3>Positioning & Content Architecture</h3>
+                    <ul class="list-editorial">
+                        <li><strong>Executive Brand Messaging:</strong> Formulating definitive corporate communication frameworks and tone-of-voice guidelines for luxury hospitality entities.</li>
+                        <li><strong>Multi-Channel Campaign Strategy:</strong> Directing integrated marketing initiatives across digital, social, and physical touchpoints to drive commercial growth.</li>
+                        <li><strong>Content Architecture:</strong> Developing premium editorial strategies, social media ecosystems, and visual storytelling aligned with luxury positioning.</li>
+                        <li><strong>Promotional Collateral:</strong> Designing high-impact marketing materials and seasonal campaign assets to support commercial revenue targets.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <span class="tag">Public Relations & Reputation</span>
+                    <h3>Media & Sentiment Management</h3>
+                    <ul class="list-editorial">
+                        <li><strong>Media & Public Relations:</strong> Architecting press materials, media announcements, and communication rollouts for new resort openings and venue launches.</li>
+                        <li><strong>Reputation Management:</strong> Monitoring, analyzing, and actively managing online brand sentiment across global review platforms and OTAs.</li>
+                        <li><strong>Crisis Communications:</strong> Establishing internal protocols and service recovery frameworks to protect and elevate brand equity.</li>
+                    </ul>
+                </div>
+                
+                <div class="image-placeholder" style="grid-column: 1 / -1; height: 300px;">
+                    [ DESIGN NOTE: Embed photographs of luxury campaign rollouts, guest review high-score badges, and PR feature layouts ]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="container">
+            <div class="section-header" style="border-bottom-color: rgba(255,255,255,0.1);">
+                <span class="section-num" style="color: var(--sandstone);">04</span>
+                <h2 class="section-title" style="color: var(--soft-white);">Global Proof of Execution</h2>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="test-card">
+                    <p>"Mohammad does beautiful, clean, and clear work... His communication and willingness to understand and adjust was humbling. A true talent!"</p>
+                    <h4>🇺🇸 Meghan (USA)</h4>
+                </div>
+                <div class="test-card">
+                    <p>"If you are looking for the best out of the best, then this is your guy."</p>
+                    <h4>🇶🇦 Badr974 (Qatar)</h4>
+                </div>
+                <div class="test-card">
+                    <p>"Mohammed is amazing to work with. He delivers outstanding work above and beyond expectations."</p>
+                    <h4>🇦🇺 Julie (Australia)</h4>
+                </div>
+            </div>
+
+            <div class="divider" style="background-color: rgba(255,255,255,0.1); margin: 60px auto;"></div>
+            
+            <div style="text-align: center;">
+                <h4 style="color: var(--gold-accent); letter-spacing: 2px; margin-bottom: 20px;">CERTIFICATIONS & TECH STACK</h4>
+                <p style="color: var(--sandstone); font-size: 0.9rem; max-width: 800px; margin: 0 auto;">
+                    CPD Accredited Hospitality Marketing | Technical SEO | AI for Marketing | CMI Digital Marketing<br><br>
+                    <strong>Creative:</strong> Cinema 4D, Corona Renderer, Adobe CC (PS, AI, ID, AE, PR)<br>
+                    <strong>Digital & Web:</strong> Google Ads, Meta Business Suite, GA4, WordPress, Elementor<br>
+                    <strong>AI & Automation:</strong> n8n, Flowise, Chatbase, Voiceflow
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2>Let's build legacy together.</h2>
+            <div class="footer-links">
+                <a href="mailto:moezat0505@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/m7md-3zt" target="_blank">LinkedIn</a>
+                <a href="https://behance.net/m7md-3zt" target="_blank">Behance</a>
+            </div>
+            <p style="margin-top: 40px; font-size: 0.8rem; color: var(--text-light);">&copy; 2026 Mohamed Ezzat Gebally. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
